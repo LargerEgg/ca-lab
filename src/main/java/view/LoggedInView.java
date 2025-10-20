@@ -52,7 +52,13 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         changePassword = new JButton("Change Password");
         buttons.add(changePassword);
 
-        logOut.addActionListener(this);
+        logOut.addActionListener(
+                evt ->{
+                    if (evt.getSource().equals(logOut)) {
+                        this.logoutController.execute();
+                    }
+                }
+        );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -107,9 +113,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * React to a button click that results in evt.
      * @param evt the ActionEvent to react to
      */
-    public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
-    }
+    public void actionPerformed(ActionEvent evt) { System.out.println("Click " + evt.getActionCommand()); }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -139,6 +143,6 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     }
 
     public void setLogoutController(LogoutController logoutController) {
-        // TODO: save the logout controller in the instance variable.
+        this.logoutController = logoutController;
     }
 }
