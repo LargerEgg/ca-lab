@@ -108,8 +108,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * @param evt the ActionEvent to react to
      */
     public void actionPerformed(ActionEvent evt) {
-        // TODO: execute the logout use case through the Controller
-        System.out.println("Click " + evt.getActionCommand());
+        logoutController.execute();
     }
 
     @Override
@@ -121,7 +120,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         else if (evt.getPropertyName().equals("password")) {
             final LoggedInState state = (LoggedInState) evt.getNewValue();
             if (state.getPasswordError() == null) {
-                JOptionPane.showMessageDialog(this, "password updated for " + state.getUsername());
+                JOptionPane.showMessageDialog(this, "password updated for " + state.g>>>etUsername());
                 passwordInputField.setText("");
             }
             else {
